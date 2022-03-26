@@ -1,25 +1,33 @@
 <h1>IQ Test</h1><hr>
 <form #testForm="ngForm" (submit)="handleSubmit(testForm)">
-    <div *ngFor="let t of questions; let i = index">
-        <h3>Question {{i + 1}}:</h3>
-        <div class="form-group row">        
-            <div class="col-sm-4">
-                <img src="{{t.question}}" height="300">
+    <fieldset class="form-group">
+        <div *ngFor="let t of questions; let i = index">
+            <h3>Question {{i + 1}}:</h3>
+            <div class="form-group row">        
+                <div class="col-sm-4">
+                    <img src="{{t.question}}" height="300">
+                </div>
+                <div class="form-check col-sm-2">
+                    <input class="form-check-input" type="radio" name="question{{i}}" ngModel id="optin1" value="1">
+                    <label class="form-check-label" for="option1">
+                    <img src="{{t.option1}}" height="200">
+                    </label>
+                </div>
+                <div class="form-check col-sm-2">
+                    <input class="form-check-input" type="radio" name="question{{i}}" ngModel id="optin2" value="2">
+                    <label class="form-check-label" for="option2">
+                    <img src="{{t.option2}}" height="200">
+                    </label>
+                </div>
+                <div class="form-check col-sm-2">
+                    <input class="form-check-input" type="radio" name="question{{i}}" ngModel id="optin3" value="3">
+                    <label class="form-check-label" for="option3">
+                    <img src="{{t.option3}}" height="200">
+                    </label>
+                </div><hr><br>
             </div>
-            <div class="col-sm-2">
-                <h4>1:</h4>
-                <img src="{{t.option1}}" height="200">
-            </div>
-            <div class="col-sm-2">
-                <h4>2:</h4>
-                <img src="{{t.option2}}" height="200">
-            </div>
-            <div class="col-sm-2">
-                <h4>3:</h4>
-                <img src="{{t.option3}}" height="200">
-            </div><hr><br>
         </div>
-    </div>
+    </fieldset>
 
     <div class="form-group row">
         <div class="col-sm-10">
