@@ -44,8 +44,31 @@ export class TestPageComponent implements OnInit {
     }
   ]
 
-  handleSubmit(testForm:NgForm){
-    console.log(testForm.value);
+  customerAnswers = {};
+  name = "";
+  result = 0;
+
+  isTestEnd  = false;
+  isHasName = false;
+
+  calculateREsult():void{
+    for (const answer in this.customerAnswers) {
+        if(answer === ""){
+          this.result += 0;
+        }else{
+          this.result += parseInt(answer);
+        }
+    }
+  }
+
+  handleSubmit(testForm:NgForm):void{
+    this.customerAnswers = testForm.value;
+    this.isTestEnd = true;
+  }
+
+  handleGetResult(getNameForm:NgForm):void{
+    this.name = getNameForm.value.name;
+    this.isHasName = true;
   }
 
   ngOnInit(): void {
