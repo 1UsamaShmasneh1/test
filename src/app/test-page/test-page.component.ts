@@ -9,6 +9,11 @@ export interface Question{
   answer: number
 }
 
+export interface Result{
+  name:string,
+  result:number
+}
+
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
@@ -44,9 +49,12 @@ export class TestPageComponent implements OnInit {
     }
   ]
 
+  results:Result[] = [];
+
   customerAnswers:any = {};
   name = "";
   result = 0;
+  readonly TestResult_KEY = 'test result';
   isTestStart = true;
   isTestEnd  = false;
   isHasName = false;
@@ -72,11 +80,20 @@ export class TestPageComponent implements OnInit {
 
   handleGetResult(getNameForm:NgForm):void{
     this.name = getNameForm.value.name;
+    this.results.push({name:this.name, result:this.result});
     this.isTestEnd = false;
     this.isHasName = true;
   }
 
+  handleSave():void{
+    localStorage.setItem(this.TestResult_KEY,JSON.stringify(this.results));
+  }
+
   ngOnInit(): void {
+    let savedResultsJson = localStorage.getItem(this.TestResult_KEY);
+    if(savedResultsJson != null){
+      this.results = JSON.parse(savedResultsJson);
+    }
   }
 
 }
