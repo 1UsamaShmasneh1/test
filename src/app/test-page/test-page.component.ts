@@ -44,30 +44,35 @@ export class TestPageComponent implements OnInit {
     }
   ]
 
-  customerAnswers = {};
+  customerAnswers:any = {};
   name = "";
   result = 0;
-
+  isTestStart = true;
   isTestEnd  = false;
   isHasName = false;
 
   calculateREsult():void{
+    let i = 0;
     for (const answer in this.customerAnswers) {
-        if(answer === ""){
+        if(this.customerAnswers[answer] === ""){
           this.result += 0;
-        }else{
-          this.result += parseInt(answer);
+        }else if(parseInt(this.customerAnswers[answer]) === this.questions[i].answer){
+          this.result += 50;
         }
+        i++;
     }
   }
 
   handleSubmit(testForm:NgForm):void{
     this.customerAnswers = testForm.value;
+    this.calculateREsult();
     this.isTestEnd = true;
+    this.isTestStart = false;
   }
 
   handleGetResult(getNameForm:NgForm):void{
     this.name = getNameForm.value.name;
+    this.isTestEnd = false;
     this.isHasName = true;
   }
 
