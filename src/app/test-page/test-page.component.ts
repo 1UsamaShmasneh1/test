@@ -27,7 +27,7 @@ export class TestPageComponent implements OnInit {
 
   questions:Question[] = [
     {
-      question: 'https://iq-global-test.com/upload/media/default/0011/01/1_0_0.png',
+      question: '../../assets/q.png',
       option1: 'https://iq-global-test.com/upload/media/default/0011/01/1_2_0.png',
       option2: 'https://iq-global-test.com/upload/media/default/0011/01/1_1_0.png',
       option3: 'https://iq-global-test.com/upload/media/default/0011/01/1_3_0.png',
